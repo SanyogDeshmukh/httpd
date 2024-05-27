@@ -5,6 +5,9 @@
 # and changes any files (because there was a missing argument), the
 # git diff will be non-empty, so fail for that case too.  For
 # non-trunk use a grep and only catch the empty argument case.
+
+kernel_version=$(uname -r)
+echo "Kernel version: $kernel_version"
 if test -v TEST_LOGNO; then
     if test -f docs/log-message-tags/update-log-msg-tags; then
         find server modules os -name \*.c | \

@@ -78,7 +78,7 @@ if ! test -v SKIP_TESTING -o -v NO_TEST_FRAMEWORK; then
     # CC=gcc, e.g. for the CC="gcc -m32" case the builds are not correct
     # otherwise.
     CC=gcc cpanm IO::Socket::SSL
-    CC=gcc cpanm Net-SSLeay
+    sudo perl -MCPAN -e shell install Net-SSLeay
     CC=gcc cpanm --notest $pkgs
 
     # Set cache key.

@@ -13,7 +13,7 @@ cat /etc/hosts
 
 # ### FIXME: This is a workaround, non-x86 builds have an IPv6
 # configuration which somehow breaks the test suite runs.  Appears
-# that Apache::Test only configures the server to Listen on 0.0.0.0
+# that  Apache::Test only configures the server to Listen on 0.0.0.0
 # (that is hard-coded), but then Apache::TestSerer::wait_till_is_up()
 # tries to connect via ::1, which fails/times out.
 #if grep ip6-localhost /etc/hosts; then

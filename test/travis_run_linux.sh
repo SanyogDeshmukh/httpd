@@ -6,8 +6,6 @@
 # git diff will be non-empty, so fail for that case too.  For
 # non-trunk use a grep and only catch the empty argument case.
 
-kernel_version=$(uname -a)
-echo "Kernel version: $kernel_version"
 if test -v TEST_LOGNO; then
     if test -f docs/log-message-tags/update-log-msg-tags; then
         find server modules os -name \*.c | \
@@ -88,6 +86,7 @@ if test -v TEST_INSTALL; then
      ./bin/apachectl -V
      test `./bin/apxs -q PREFIX` = $PREFIX
      test `$PWD/bin/apxs -q PREFIX` = $PREFIX
+     rm -rf $PREFIX/foobar
      ./bin/apxs -g -n foobar
      cd foobar; make
    popd

@@ -25,7 +25,7 @@ function install_apx() {
     local name=$1
     local version=$2
     local root=https://svn.apache.org/repos/asf/apr/${name}
-    local prefix=${HOME}/root/${name}-${version}
+    local prefix=${HOME}/build/${name}-${version}
     local build=${HOME}/build/${name}-${version}
     local giturl=https://github.com/apache/${name}.git
     local config=$3

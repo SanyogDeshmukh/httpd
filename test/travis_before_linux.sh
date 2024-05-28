@@ -77,6 +77,8 @@ if ! test -v SKIP_TESTING -o -v NO_TEST_FRAMEWORK; then
     # CPAN modules are to be used with the system Perl and always with
     # CC=gcc, e.g. for the CC="gcc -m32" case the builds are not correct
     # otherwise.
+    cpanm IO::Socket::SSL
+    
     CC=gcc cpanm --notest $pkgs
 
     # Set cache key.

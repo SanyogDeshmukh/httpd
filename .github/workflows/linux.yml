@@ -120,7 +120,7 @@ jobs:
               TEST_MALLOC=1
               TEST_SSL=1
               CLEAR_CACHE=1
-          # -------------------------------------------------------------------------
+          # --------------------------------------------------------------------------
           - name: Shared MPMs (prefork), pool-debug, SSL/TLS variants
             config: --enable-mods-shared=reallyall --enable-mpms-shared=all --with-mpm=prefork
             env: |

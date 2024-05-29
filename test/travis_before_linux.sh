@@ -55,7 +55,7 @@ function install_apx() {
          make install
     popd
 
-    echo ${version} ${revision} "${config}" "CC=${CC}" > ${HOME}/root/.key-${name}
+    echo ${version} ${revision} "${config}" "CC=${CC}" > ${HOME}/build/.key-${name}
 }
 
 # Allow to load $HOME/build/apache/httpd/.gdbinit

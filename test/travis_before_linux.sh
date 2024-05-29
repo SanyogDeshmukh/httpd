@@ -41,7 +41,7 @@ function install_apx() {
 
     # Blow away the cached install root if the cached install is stale
     # or doesn't match the expected configuration.
-    grep -q "${version} ${revision} ${config} CC=$CC" ${HOME}/root/.key-${name} || rm -rf ${prefix}
+    grep -q "${version} ${revision} ${config} CC=$CC" ${HOME}/build/.key-${name} || rm -rf ${prefix}
 
     if test -d ${prefix}; then
         return 0
@@ -114,27 +114,27 @@ fi
 if test -v TEST_OPENSSL3; then
     # Build the requested version of OpenSSL if it's not already
     # installed in the cached ~/root
-    if ! test -f $HOME/root/openssl-is-${TEST_OPENSSL3}; then
+    if ! test -f $HOME/build/openssl-is-${TEST_OPENSSL3}; then
         # Remove any previous install.
-        rm -rf $HOME/root/openssl3
+        rm -rf $HOME/build/openssl3
 
         mkdir -p build/openssl
         pushd build/openssl
            curl "https://www.openssl.org/source/openssl-${TEST_OPENSSL3}.tar.gz" |
               tar -xzf -
            cd openssl-${TEST_OPENSSL3}
-           ./Configure --prefix=$HOME/root/openssl3 shared no-tests ${OPENSSL_CONFIG}
+           ./Configure --prefix=$HOME/build/openssl3 shared no-tests ${OPENSSL_CONFIG}
            make $MFLAGS
            make install_sw
-           touch $HOME/root/openssl-is-${TEST_OPENSSL3}
+           touch $HOME/build/openssl-is-${TEST_OPENSSL3}
        popd
     fi
 
     # Point APR/APR-util at the installed version of OpenSSL.
     if test -v APU_VERSION; then
-        APU_CONFIG="${APU_CONFIG} --with-openssl=$HOME/root/openssl3"
+        APU_CONFIG="${APU_CONFIG} --with-openssl=$HOME/build/openssl3"
     elif test -v APR_VERSION; then
-        APR_CONFIG="${APR_CONFIG} --with-openssl=$HOME/root/openssl3"
+        APR_CONFIG="${APR_CONFIG} --with-openssl=$HOME/build/openssl3"
     else
         : Non-system APR/APR-util must be used to build with OpenSSL 3 to avoid mismatch with system libraries
         exit 1
@@ -143,23 +143,23 @@ fi
 
 if test -v APR_VERSION; then
     install_apx apr ${APR_VERSION} "${APR_CONFIG}"
-    ldd $HOME/root/apr-${APR_VERSION}/lib/libapr-?.so || true
-    APU_CONFIG="$APU_CONFIG --with-apr=$HOME/root/apr-${APR_VERSION}"
+    ldd $HOME/build/apr-${APR_VERSION}/lib/libapr-?.so || true
+    APU_CONFIG="$APU_CONFIG --with-apr=$HOME/build/apr-${APR_VERSION}"
 fi
 
 if test -v APU_VERSION; then
     install_apx apr-util ${APU_VERSION} "${APU_CONFIG}" --with-apr=$HOME/build/apr-${APR_VERSION}
-    ldd $HOME/root/apr-util-${APU_VERSION}/lib/libaprutil-?.so || true
+    ldd $HOME/build/apr-util-${APU_VERSION}/lib/libaprutil-?.so || true
 fi
 
 # Since librustls is not a package (yet) on any platform, we
 # build the version we want from source
 if test -v TEST_MOD_TLS -a -v RUSTLS_VERSION; then
-    if ! test -d $HOME/root/rustls; then
+    if ! test -d $HOME/build/rustls; then
         RUSTLS_HOME="$HOME/build/rustls-ffi"
         git clone -q --depth=1 -b "$RUSTLS_VERSION" https://github.com/rustls/rustls-ffi.git "$RUSTLS_HOME"
         pushd "$RUSTLS_HOME"
-            make install DESTDIR="$HOME/root/rustls"
+            make install DESTDIR="$HOME/build/rustls"
         popd
     fi
 fi

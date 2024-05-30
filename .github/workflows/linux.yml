@@ -81,23 +81,23 @@ jobs:
        #       APU_VERSION=1.6.3
        #       APU_CONFIG="--with-crypto --with-ldap"
           # -------------------------------------------------------------------------
-          - name: APR 1.8.x, APR-util 1.7.x
-            config: --enable-mods-shared=reallyall
-            env: |
-              APR_VERSION=1.8.x
-              APU_VERSION=1.7.x
-              APU_CONFIG="--with-crypto --with-ldap"
-              CLEAR_CACHE=1
-          # -------------------------------------------------------------------------
-       #   - name: Pool-debug
+       #   - name: APR 1.8.x, APR-util 1.7.x
        #     config: --enable-mods-shared=reallyall
        #     env: |
-       #       APR_VERSION=1.7.x
-       #       APR_CONFIG="--enable-pool-debug"
+       #       APR_VERSION=1.8.x
        #       APU_VERSION=1.7.x
        #       APU_CONFIG="--with-crypto --with-ldap"
-       #       TEST_MALLOC=1
        #       CLEAR_CACHE=1
+          # -------------------------------------------------------------------------
+          - name: Pool-debug
+            config: --enable-mods-shared=reallyall
+            env: |
+              APR_VERSION=1.7.x
+              APR_CONFIG="--enable-pool-debug"
+              APU_VERSION=1.7.x
+              APU_CONFIG="--with-crypto --with-ldap"
+              TEST_MALLOC=1
+              CLEAR_CACHE=1
           # -------------------------------------------------------------------------
        #   - name: Shared MPMs (event), pool-debug, SSL/TLS variants
        #     config: --enable-mods-shared=reallyall --enable-mpms-shared=all --with-mpm=event

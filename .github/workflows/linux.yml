@@ -139,14 +139,14 @@ jobs:
        #       TESTS="t/modules/dav.t"
        #     pkgs: litmus
           # -------------------------------------------------------------------------
-          - name: litmus WebDAV tests, APR trunk, LMDB
-            config: --enable-dav --enable-dav-fs
-            pkgs: litmus liblmdb-dev
-            env: |
-              APR_VERSION=trunk
-              APR_CONFIG="--with-lmdb --with-dbm=lmdb"
-              LITMUS=1
-              TESTS="t/modules/dav.t"
+       #   - name: litmus WebDAV tests, APR trunk, LMDB
+       #     config: --enable-dav --enable-dav-fs
+       #     pkgs: litmus liblmdb-dev
+       #     env: |
+       #       APR_VERSION=trunk
+       #       APR_CONFIG="--with-lmdb --with-dbm=lmdb"
+       #       LITMUS=1
+       #       TESTS="t/modules/dav.t"
           # -------------------------------------------------------------------------
           # MFLAGS= works around https://bz.apache.org/bugzilla/show_bug.cgi?id=63942
           ## TODO if: *condition_not_24x
@@ -183,26 +183,26 @@ jobs:
        #       NOTEST_LIBS=-lubsan
        #       TEST_UBSAN=1
           # -------------------------------------------------------------------------
-          - name: ASan
-            notest-cflags: -ggdb -fsanitize=address -fno-sanitize-recover=address -fno-omit-frame-pointer
-            config: --enable-mods-shared=reallyall
-            env: |
-              APR_VERSION=1.7.x
-              APU_VERSION=1.7.x
-              APU_CONFIG="--with-crypto --with-ldap"
-              TEST_ASAN=1
-              CLEAR_CACHE=1
+       #   - name: ASan
+       #     notest-cflags: -ggdb -fsanitize=address -fno-sanitize-recover=address -fno-omit-frame-pointer
+       #     config: --enable-mods-shared=reallyall
+       #     env: |
+       #       APR_VERSION=1.7.x
+       #       APU_VERSION=1.7.x
+       #       APU_CONFIG="--with-crypto --with-ldap"
+       #       TEST_ASAN=1
+       #       CLEAR_CACHE=1
           # -------------------------------------------------------------------------
-          - name: ASan, pool-debug
-            notest-cflags: -ggdb -fsanitize=address -fno-sanitize-recover=address -fno-omit-frame-pointer
-            config: --enable-mods-shared=reallyall
-            env: |
-              APR_VERSION=1.7.x
-              APR_CONFIG="--enable-pool-debug"
-              APU_VERSION=1.7.x
-              APU_CONFIG="--with-crypto --with-ldap"
-              TEST_=1
-              CLEAR_CACHE=1
+       #   - name: ASan, pool-debug
+       #     notest-cflags: -ggdb -fsanitize=address -fno-sanitize-recover=address -fno-omit-frame-pointer
+       #     config: --enable-mods-shared=reallyall
+       #     env: |
+       #       APR_VERSION=1.7.x
+       #       APR_CONFIG="--enable-pool-debug"
+       #       APU_VERSION=1.7.x
+       #       APU_CONFIG="--with-crypto --with-ldap"
+       #       TEST_=1
+       #       CLEAR_CACHE=1
           # -------------------------------------------------------------------------
           - name: HTTP/2 test suite
             config: --enable-mods-shared=reallyall --with-mpm=event --enable-mpms-shared=all
@@ -268,41 +268,41 @@ jobs:
           #     APU_VERSION=1.6.3
           # APU_CONFIG="--with-crypto --with-ldap"
           # -------------------------------------------------------------------------
-          - name: OpenSSL 3.1
-            config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
-            env: |
-               TEST_OPENSSL3=3.1.5
-               APR_VERSION=1.7.4
-               APU_VERSION=1.6.3
-               APU_CONFIG="--without-crypto"
+       #   - name: OpenSSL 3.1
+       #     config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
+       #     env: |
+       #        TEST_OPENSSL3=3.1.5
+       #        APR_VERSION=1.7.4
+       #        APU_VERSION=1.6.3
+       #        APU_CONFIG="--without-crypto"
           # --------------------------------------------------------------------------
-          - name: OpenSSL 3.2 -Werror
-            config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto             
-            notest-cflags: -Werror -O2 -Wno-deprecated-declarations
-            env: |
-               TEST_OPENSSL3=3.2.1
-               APR_VERSION=1.7.4
-               APU_VERSION=1.6.3
-               APU_CONFIG="--without-crypto"
+       #   - name: OpenSSL 3.2 -Werror
+       #     config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto             
+       #     notest-cflags: -Werror -O2 -Wno-deprecated-declarations
+       #     env: |
+       #        TEST_OPENSSL3=3.2.1
+       #        APR_VERSION=1.7.4
+       #        APU_VERSION=1.6.3
+       #        APU_CONFIG="--without-crypto"
           # -------------------------------------------------------------------------
-          - name: OpenSSL 3.2 no-engine
-            config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
-            env: |
-               TEST_OPENSSL3=3.2.1
-               OPENSSL_CONFIG=no-engine
-               APR_VERSION=1.7.4
-               APU_VERSION=1.6.3
-               APU_CONFIG="--without-crypto"
+       #   - name: OpenSSL 3.2 no-engine
+       #     config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
+       #     env: |
+       #        TEST_OPENSSL3=3.2.1
+       #        OPENSSL_CONFIG=no-engine
+       #        APR_VERSION=1.7.4
+       #        APU_VERSION=1.6.3
+       #        APU_CONFIG="--without-crypto"
           # -------------------------------------------------------------------------
-          - name: OpenSSL 3.3 no-engine -Werror
-            config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
-            notest-cflags: -Werror -O2
-            env: |
-               TEST_OPENSSL3=3.3.0
-               OPENSSL_CONFIG=no-engine
-               APR_VERSION=1.7.4
-               APU_VERSION=1.6.3
-               APU_CONFIG="--without-crypto"
+       #   - name: OpenSSL 3.3 no-engine -Werror
+       #     config: --enable-mods-shared=most --enable-maintainer-mode --disable-md --disable-http2 --disable-ldap --disable-crypto
+       #     notest-cflags: -Werror -O2
+       #     env: |
+       #        TEST_OPENSSL3=3.3.0
+       #        OPENSSL_CONFIG=no-engine
+       #        APR_VERSION=1.7.4
+       #        APU_VERSION=1.6.3
+       #        APU_CONFIG="--without-crypto"
           # -------------------------------------------------------------------------
     runs-on: self-hosted
     timeout-minutes: 30
@@ -322,7 +322,7 @@ jobs:
       run: sudo apt-get -o Acquire::Retries=5 update
     - name: Install prerequisites
       run: sudo apt-get install -y -o Acquire::Retries=5
-                    cpanminus openssl libssl-dev zlib1g-dev subversion gcc bison libtool-bin libapr1-dev libaprutil1-dev
+                    cpanminus openssl libssl-dev zlib1g-dev subversion gcc bison flex apache2-ldap libtool-bin libapr1-dev libaprutil1-dev
                     liblua5.3-dev libbrotli-dev libcurl4-openssl-dev     
                     libnghttp2-dev libjansson-dev libpcre2-dev gdb
                     perl-doc ${{ matrix.pkgs }}

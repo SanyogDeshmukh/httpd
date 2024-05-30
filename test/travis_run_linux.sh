@@ -70,6 +70,7 @@ fi
 srcdir=$PWD
 
 if test -v TEST_VPATH; then
+    rm -rf ../vpath
     mkdir ../vpath
     cd ../vpath
 fi

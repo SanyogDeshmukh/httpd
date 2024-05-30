@@ -69,7 +69,7 @@ jobs:
             config: --enable-mods-shared=reallyall --enable-maintainer-mode
             notest-cflags: -Werror -O2
             env: |
-              CC=gcc-10
+              CC=gcc
               TEST_VPATH=1
               TEST_INSTALL=1
               SKIP_TESTING=1

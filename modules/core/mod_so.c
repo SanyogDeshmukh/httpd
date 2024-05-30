@@ -185,7 +185,7 @@ static const char *load_module(cmd_parms *cmd, void *dummy,
     apr_dso_handle_t *modhandle;
     apr_dso_handle_sym_t modsym;
     module *modp;
-    const char *module_file;
+    const char *module_file = NULL;
     so_server_conf *sconf;
     ap_module_symbol_t *modi;
     ap_module_symbol_t *modie;

@@ -65,14 +65,14 @@ jobs:
        #     env: |
        #       TEST_ARGS=-order=random
           # -------------------------------------------------------------------------
-          - name: GCC 10 maintainer-mode w/-Werror, install + VPATH
-            config: --enable-mods-shared=reallyall --enable-maintainer-mode
-            notest-cflags: -Werror -O2
-            env: |
-              CC=gcc
-              TEST_VPATH=1
-              TEST_INSTALL=1
-              SKIP_TESTING=1
+       #   - name: GCC 10 maintainer-mode w/-Werror, install + VPATH
+       #     config: --enable-mods-shared=reallyall --enable-maintainer-mode
+       #     notest-cflags: -Werror -O2
+       #     env: |
+       #       CC=gcc
+       #       TEST_VPATH=1
+       #       TEST_INSTALL=1
+       #       SKIP_TESTING=1
           # -------------------------------------------------------------------------
        #   - name: All-modules, APR 1.7.4, APR-util 1.6.3
        #     config: --enable-mods-shared=reallyall
@@ -81,13 +81,13 @@ jobs:
        #       APU_VERSION=1.6.3
        #       APU_CONFIG="--with-crypto --with-ldap"
           # -------------------------------------------------------------------------
-       #   - name: APR 1.8.x, APR-util 1.7.x
-       #     config: --enable-mods-shared=reallyall
-       #     env: |
-       #       APR_VERSION=1.8.x
-       #       APU_VERSION=1.7.x
-       #       APU_CONFIG="--with-crypto --with-ldap"
-       #       CLEAR_CACHE=1
+          - name: APR 1.8.x, APR-util 1.7.x
+            config: --enable-mods-shared=reallyall
+            env: |
+              APR_VERSION=1.8.x
+              APU_VERSION=1.7.x
+              APU_CONFIG="--with-crypto --with-ldap"
+              CLEAR_CACHE=1
           # -------------------------------------------------------------------------
        #   - name: Pool-debug
        #     config: --enable-mods-shared=reallyall

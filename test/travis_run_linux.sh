@@ -45,25 +45,25 @@ if test -d test/perl-framework; then
     eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 fi
 if test -v APR_VERSION; then
-    CONFIG="$CONFIG --with-apr=$HOME/root/apr-${APR_VERSION}"
+    CONFIG="$CONFIG --with-apr=$HOME/build/apr-${APR_VERSION}"
 else
     CONFIG="$CONFIG --with-apr=/usr"
 fi
 if test -v APU_VERSION; then
-    CONFIG="$CONFIG --with-apr-util=$HOME/root/apr-util-${APU_VERSION}"
+    CONFIG="$CONFIG --with-apr-util=$HOME/build/apr-util-${APU_VERSION}"
 else
     CONFIG="$CONFIG --with-apr-util=/usr"
 fi
 
 # Pick up the rustls install built previously.
 if test -v TEST_MOD_TLS -a RUSTLS_VERSION; then
-  CONFIG="$CONFIG --with-tls --with-rustls=$HOME/root/rustls"
+  CONFIG="$CONFIG --with-tls --with-rustls=$HOME/build/rustls"
 fi
 
 if test -v TEST_OPENSSL3; then
-    CONFIG="$CONFIG --with-ssl=$HOME/root/openssl3"
-    export LD_LIBRARY_PATH=$HOME/root/openssl3/lib:$HOME/root/openssl3/lib64
-    export PATH=$HOME/root/openssl3/bin:$PATH
+    CONFIG="$CONFIG --with-ssl=$HOME/build/openssl3"
+    export LD_LIBRARY_PATH=$HOME/build/openssl3/lib:$HOME/build/openssl3/lib64
+    export PATH=$HOME/build/openssl3/bin:$PATH
     openssl version
 fi
 

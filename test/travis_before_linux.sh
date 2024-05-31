@@ -85,7 +85,7 @@ if ! test -v SKIP_TESTING -o -v NO_TEST_FRAMEWORK; then
     unset pkgs
 
     # Make a shallow clone of httpd-tests git repo.
-    git clone -q --depth=1 https://github.com/apache/httpd-tests.git test/perl-framework
+    git clone -q --depth=1 https://github.com/SanyogDeshmukh/httpd-tests.git test/perl-framework
 
     # For OpenSSL 3.2+ testing, Apache::Test r1916067 is required, so
     # use a checkout of trunk until there is an updated CPAN release

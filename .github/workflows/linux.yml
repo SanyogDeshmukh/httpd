@@ -219,19 +219,19 @@ jobs:
           # -------------------------------------------------------------------------
           ### TODO: if: *condition_not_24x
           ### TODO: pebble install is broken.
-          - name: ACME test suite
-            config: --enable-mods-shared=reallyall --with-mpm=event --enable-mpms-shared=event
-            pkgs: >-
-                python3-pytest nghttp2-client python3-cryptography python3-requests python3-filelock
-                golang-1.17 curl
-            env: |
-                APR_VERSION=1.7.4
-                APU_VERSION=1.6.3
-                APU_CONFIG="--with-crypto"
-                GOROOT=/usr/lib/go-1.17
-                NO_TEST_FRAMEWORK=1
-                TEST_INSTALL=1
-                TEST_MD=1
+       #   - name: ACME test suite
+       #     config: --enable-mods-shared=reallyall --with-mpm=event --enable-mpms-shared=event
+       #     pkgs: >-
+       #         python3-pytest nghttp2-client python3-cryptography python3-requests python3-filelock
+       #         golang-1.17 curl
+       #     env: |
+       #         APR_VERSION=1.7.4
+       #         APU_VERSION=1.6.3
+       #         APU_CONFIG="--with-crypto"
+       #         GOROOT=/usr/lib/go-1.17
+       #         NO_TEST_FRAMEWORK=1
+       #         TEST_INSTALL=1
+       #         TEST_MD=1
           # -------------------------------------------------------------------------
           ### TODO: if: *condition_not_24x
           - name: MOD_TLS test suite

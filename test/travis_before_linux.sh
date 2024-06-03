@@ -18,7 +18,7 @@ cat /etc/hosts
 # tries to connect via ::1, which fails/times out.
 #if grep ip6-localhost /etc/hosts; then
 #    sudo sed -i "/ip6-/d" /etc/hosts
-#    cat /etc/hosts
+#    cat /etc/hosts 
 #fi
 
 function install_apx() {

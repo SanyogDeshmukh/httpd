@@ -22,7 +22,12 @@ cat /etc/hosts
 #fi
 
 #remove existing containers 
-sudo docker ps -a -q | sudo docker rm -f
+if [[ $(docker ps -a -q) ]]; then
+  sudo docker rm -f $(docker ps -a -q)
+  echo "Removed all containers."
+else
+  echo "No containers found."
+fi
 
 function install_apx() {
     local name=$1

@@ -22,7 +22,7 @@ cat /etc/hosts
 #fi
 
 #remove existing containers 
-if [[ $(docker ps -a -q) ]]; then
+if [[ $(sudo docker ps -a -q) ]]; then
   sudo docker rm -f $(docker ps -a -q)
   echo "Removed all containers."
 else

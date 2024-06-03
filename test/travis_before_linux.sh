@@ -23,22 +23,18 @@ cat /etc/hosts
 
 # Desired container port
 CONTAINER_PORT=11211
-# Function to check if port is free
-function is_port_free() {
+
+# Function to check and free the port
+function free_port() {
   local port=$1
-  sudo netstat -atlpn | grep :$port > /dev/null 2>&1
-  return $?
-}
-# Function to kill process using the port
-function kill_process_on_port() {
-  local port=$1
-  # Use netstat to find the PID of the process using the port
-  pid=$(sudo netstat -atlpn | grep :$port | awk '{print $7}')
-  if [[ ! -z "$pid" ]]; then
-    echo "Killing process with PID: $pid using port $port"
-    sudo kill $pid
+  if netstat -tlpn | grep :"$port" >/dev/null 2>&1; then
+    # Process using the port found, kill it
+    sudo fuser -nk $port
+    echo "Killed process using port $port"
   fi
 }
+# Check and free the port
+free_port $CONTAINER_PORT
 
 # Check if port is free
 if is_port_free $CONTAINER_PORT; then

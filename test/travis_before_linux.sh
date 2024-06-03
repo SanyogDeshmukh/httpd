@@ -41,7 +41,7 @@ function kill_process_on_port() {
 }
 
 # Check if port is free
-if ! is_port_free $CONTAINER_PORT; then
+if is_port_free $CONTAINER_PORT; then
   kill_process_on_port $CONTAINER_PORT
   echo "Killed process using port $CONTAINER_PORT"
 fi

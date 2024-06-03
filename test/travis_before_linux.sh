@@ -21,20 +21,8 @@ cat /etc/hosts
 #    cat /etc/hosts 
 #fi
 
-# Desired container port
-CONTAINER_PORT=11211
-
-# Function to check and free the port
-function free_port() {
-  local port=$1
-  if sudo netstat -tlpn | grep :"$port" >/dev/null 2>&1; then
-    # Process using the port found, kill it
-    sudo fuser -nk $port
-    echo "Killed process using port $port"
-  fi
-}
-# Check and free the port
-free_port $CONTAINER_PORT
+#remove existing containers 
+sudo docker rm -f  $(sudo docker ps -a -q)
 
 function install_apx() {
     local name=$1

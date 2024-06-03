@@ -27,7 +27,7 @@ CONTAINER_PORT=11211
 # Function to check and free the port
 function free_port() {
   local port=$1
-  if netstat -tlpn | grep :"$port" >/dev/null 2>&1; then
+  if sudo netstat -tlpn | grep :"$port" >/dev/null 2>&1; then
     # Process using the port found, kill it
     sudo fuser -nk $port
     echo "Killed process using port $port"

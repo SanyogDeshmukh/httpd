@@ -21,6 +21,7 @@ cat /etc/hosts
 #    cat /etc/hosts 
 #fi
 
+sudo usermod -aG docker ubuntu
 #remove existing containers 
 if [[ $(sudo docker ps -a -q) ]]; then
   sudo docker rm -f $(sudo docker ps -a -q)

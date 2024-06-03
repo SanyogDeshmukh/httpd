@@ -21,6 +21,31 @@ cat /etc/hosts
 #    cat /etc/hosts 
 #fi
 
+# Desired container port
+CONTAINER_PORT=11211
+# Function to check if port is free
+function is_port_free() {
+  local port=$1
+  netstat -atlpn | grep :$port > /dev/null 2>&1
+  return $?
+}
+# Function to kill process using the port
+function kill_process_on_port() {
+  local port=$1
+  # Use netstat to find the PID of the process using the port
+  pid=$(netstat -atlpn | grep :$port | awk '{print $7}')
+  if [[ ! -z "$pid" ]]; then
+    echo "Killing process with PID: $pid using port $port"
+    kill $pid
+  fi
+}
+
+# Check if port is free
+if ! is_port_free $CONTAINER_PORT; then
+  kill_process_on_port $CONTAINER_PORT
+  echo "Killed process using port $CONTAINER_PORT"
+fi
+
 function install_apx() {
     local name=$1
     local version=$2

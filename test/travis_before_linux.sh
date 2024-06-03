@@ -22,7 +22,7 @@ cat /etc/hosts
 #fi
 
 #remove existing containers 
-sudo docker rm -f  $(sudo docker ps -a -q)
+sudo docker ps -a -q | sudo docker rm -f
 
 function install_apx() {
     local name=$1

@@ -36,12 +36,6 @@ function free_port() {
 # Check and free the port
 free_port $CONTAINER_PORT
 
-# Check if port is free
-if is_port_free $CONTAINER_PORT; then
-  kill_process_on_port $CONTAINER_PORT
-  echo "Killed process using port $CONTAINER_PORT"
-fi
-
 function install_apx() {
     local name=$1
     local version=$2

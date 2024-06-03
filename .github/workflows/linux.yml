@@ -124,7 +124,7 @@ jobs:
       run: sudo apt-get -o Acquire::Retries=5 update
     - name: Install prerequisites
       run: sudo apt-get install -y -o Acquire::Retries=5
-                    cpanminus openssl libssl-dev docker.io zlib1g-dev subversion gcc bison flex docker-buildx net-tools libtool-bin libapr1-dev libaprutil1-dev
+                    cpanminus openssl libssl-dev docker.io zlib1g-dev subversion gcc bison flex docker-buildx net-tools psmisc libtool-bin libapr1-dev libaprutil1-dev
                     liblua5.3-dev libbrotli-dev libcurl4-openssl-dev     
                     libnghttp2-dev libjansson-dev libpcre2-dev gdb
                     perl-doc ${{ matrix.pkgs }}

@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:7
+FROM registry.access.redhat.com/ubi7/ubi:latest
 RUN yum install -y yum && \
     yum install -y openldap openldap-clients openldap-servers openldap-devel && \
     yum -y clean all --enablerepo='*'
